@@ -10,6 +10,47 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script>
+            function handleCheckout() {
+                var currentdate = new Date(); 
+                fetch('https://ntfy.sh/ListeningEars-CheckOut', {
+                    method: 'POST', // PUT works too
+                    body: 'Therapist Check out received from James at '+currentdate+ ' Barclays Whippany (Group Services) 400 Jefferson Park, Whippany, NJ 07981',
+                    headers: {
+                        'Title': 'Therapist Check out',
+                        'Priority': '4',
+                        'Tags': 'heavy_check_mark'
+                    }
+                })
+            }
+
+            function handleSOS() {
+                var currentdate = new Date(); 
+                fetch('https://ntfy.sh/ListeningEars-SOS', {
+                    method: 'POST', // PUT works too
+                    body: 'Therapist SOS received from James at '+currentdate+ ' Barclays Whippany (Group Services) 400 Jefferson Park, Whippany, NJ 07981',
+                    headers: {
+                        'Title': 'Therapist SOS',
+                        'Priority': '4',
+                        'Tags': 'warning,rotating_light'
+                    }
+                })
+            }
+
+            function handleCheckin() {
+                var currentdate = new Date(); 
+                fetch('https://ntfy.sh/ListeningEars-CheckIn', {
+                    method: 'POST', // PUT works too
+                    body: 'Therapist Check in received from Jospeh at '+currentdate+ ' Barclays Whippany (Group Services) 400 Jefferson Park, Whippany, NJ 07981',
+                    headers: {
+                        'Title': 'Therapist Check in',
+                        'Priority': '4',
+                        'Tags': '+1'
+                    }
+                })
+            }
+
+        </script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -78,10 +119,7 @@
                         </div>
                     </div>
 					 <div class="col-xl-4 col-md-6">
-                                <div class="card bg-danger text-white mb-2">
-                                    <div class="card-body" href="#">SOS</div>
-                                   
-                                </div>
+                            
                             </div>
                     <div class="sb-sidenav-footer">
 					 
@@ -112,8 +150,9 @@
          <br>
         <br>
         <!-- Button to Open the Modal -->
-   <a href="#" class="btn btn-primary">Check In</a>
-   <a href="#" class="btn btn-primary">Check Out</a>
+        <a href="#" class="btn btn-primary" onclick="handleCheckin()">Check In</a>
+        <a href="#" class="btn btn-primary" onclick="handleCheckout()">Check Out</a>
+        <a href="#" class="btn btn-danger" onclick="handleSOS()">SOS</a>
  
  
 
